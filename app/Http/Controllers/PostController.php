@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class PostController extends Controller
 {
@@ -17,7 +18,11 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        $users = User::all();
+
+        return view('posts.create', [
+            'users' => $users
+        ]);
     }
 
     public function store(Request $request)
@@ -34,6 +39,8 @@ class PostController extends Controller
          'description.required'=> 'Write a Description',
          'description.min' => 'Description is too short',
         ]);
+
+        
 
         //store the request data in the db
         Post::create(request()->all());

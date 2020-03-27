@@ -24,6 +24,15 @@
       <textarea name="description" class="form-control">
 
       </textarea>
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Users</label>
+      <select name="user_id" class="form-control">
+        @foreach($users as $user)  
+          <option value="{{$user->id}}">{{$user->name}}</option>
+        @endforeach
+        </select>
     </div>
 
    

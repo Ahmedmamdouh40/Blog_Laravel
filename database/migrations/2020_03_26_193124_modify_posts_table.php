@@ -16,7 +16,7 @@ class ModifyPostsTable extends Migration
         Schema::table('posts', function (Blueprint $table) {
             $table->string('title', 100);
             $table->text('description');
-            
+            $table->unsignedBigInteger('user_id');
         });
     }
 
