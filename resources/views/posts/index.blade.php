@@ -25,6 +25,7 @@
                   <td>{{ $post->created_at }}</td>
 
                 <td><a href="{{route('posts.show',['post' => $post->id])}}" class="btn btn-primary btn-sm">View Details</a></td>
+                <td><a href="{{route('posts.edit',['post' => $post->id])}}" class="btn btn-warning btn-sm">Update</a></td>
                 <td>
                     <form method="POST" action="{{route('posts.destroy',['post' => $post->id])}}">
                         @csrf

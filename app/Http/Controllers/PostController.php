@@ -25,12 +25,13 @@ class PostController extends Controller
         //get the request data
         $request = request();
 
-        //store the request data in the db
-        Post::create([
-            'title' => $request->title,
-            'description' =>  $request->description,
-            
+         $request->validate([
+            'title' => 'required',
+            'description' => 'required',
         ]);
+
+        //store the request data in the db
+        Post::create(request()->all());
 
         //redirect to /posts
         return redirect()->route('posts.index');
@@ -56,4 +57,24 @@ class PostController extends Controller
         
         return redirect()->route('posts.index');
     }
+
+    public function edit()
+    {
+        $request = request();
+        $postId = $request->post;
+        $post = Post::find($postId);
+        
+        return view('posts.edit',[
+            'post' => $post,
+        ]);
+    }
+
+
+    public function update($postId)
+    {
+        Post::where('id', $postId)->first()->update(request()->all());
+        
+        return redirect()->route('posts.index');
+    }
+
 }
