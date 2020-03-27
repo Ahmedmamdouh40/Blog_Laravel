@@ -2,7 +2,7 @@
 
 @section('content')
       <div class="container m-5">
-      <a href="{{route('posts.create')}}" class="btn btn-success mb-5">Create Post</a>
+      <a href="{{route('posts.create')}}" class="btn btn-primary mb-5">Create Post</a>
           <table class="table">
               <thead>
                 <tr>

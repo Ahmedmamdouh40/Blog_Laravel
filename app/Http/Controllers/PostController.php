@@ -20,14 +20,19 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         //get the request data
-        $request = request();
+       
 
          $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|unique:posts|min:3',
+            'description' => 'required|min:10',
+         ],
+        ['title.required'=> 'Write a TITLE',
+         'title.min' => 'Title is too short',
+         'description.required'=> 'Write a Description',
+         'description.min' => 'Description is too short',
         ]);
 
         //store the request data in the db
@@ -72,6 +77,15 @@ class PostController extends Controller
 
     public function update($postId)
     {
+        request()->validate([
+            'title' => 'required|min:3',
+            'description' => 'required|min:10'
+        ],
+        ['title.required'=> 'Write a TITLE',
+         'title.min' => 'Title is too short',
+         'description.required'=> 'Write a Description',
+         'description.min' => 'Description is too short',
+        ]);
         Post::where('id', $postId)->first()->update(request()->all());
         
         return redirect()->route('posts.index');

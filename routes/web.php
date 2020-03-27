@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 
 
+Route::group(['middleware'=>'auth'],function(){
+
 Route::get('/posts', 'PostController@index')->name('posts.index');
 
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
@@ -32,3 +34,8 @@ Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 
 Route::put('/posts/{post}', 'PostController@update')->name('posts.update');
 
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
