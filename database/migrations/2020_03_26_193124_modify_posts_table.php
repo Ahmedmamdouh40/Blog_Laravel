@@ -17,6 +17,7 @@ class ModifyPostsTable extends Migration
             $table->string('title', 100);
             $table->text('description');
             $table->unsignedBigInteger('user_id');
+            $table->string('slug');
         });
     }
 

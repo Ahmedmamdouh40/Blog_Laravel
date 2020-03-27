@@ -8,6 +8,7 @@
                 <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Title</th>
+                  <th scope="col">Slug</th>
                   <th scope="col">Description</th>
                   <th scope="col">User Name</th>
                   <th scope="col">Created At</th>
@@ -19,6 +20,7 @@
                 <tr>
                 <th scope="row">{{ $post->id }}</th>
                   <td>{{ $post->title }}</td>
+                  <td>{{ $post->slug }}</td>
                   <td>{{ $post->description }}</td>
 
                   <td>{{ $post->user ? $post->user->name : 'not exist'}}</td>
@@ -30,7 +32,7 @@
                     <form method="POST" action="{{route('posts.destroy',['post' => $post->id])}}">
                         @csrf
                         {{method_field('DELETE')}}
-                        <button type='submit' class="btn btn-danger btn-sm">Delete</button>
+                        <button type='submit' class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                 </td>
                 </tr>

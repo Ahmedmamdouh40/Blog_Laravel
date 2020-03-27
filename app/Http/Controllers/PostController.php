@@ -19,7 +19,7 @@ class PostController extends Controller
     public function create()
     {
         $users = User::all();
-
+        
         return view('posts.create', [
             'users' => $users
         ]);
@@ -40,10 +40,22 @@ class PostController extends Controller
          'description.min' => 'Description is too short',
         ]);
 
+
+        //validate request user is in database users
+        $users = User::all();
+        foreach($users as $user){
+            $users_id[]= $user->id;
+        }
+
+        $user_id=request()->user_id;
         
+        if(in_array($user_id , $users_id)){
 
         //store the request data in the db
         Post::create(request()->all());
+
+        }
+        else dd("ya 7ramy ya les");
 
         //redirect to /posts
         return redirect()->route('posts.index');
