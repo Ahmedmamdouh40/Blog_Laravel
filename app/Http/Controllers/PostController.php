@@ -51,7 +51,7 @@ class PostController extends Controller
         
         if(in_array($user_id , $users_id)){
 
-        //store the request data in the db
+        //store the request data in the GET
         Post::create(request()->all());
 
         }
